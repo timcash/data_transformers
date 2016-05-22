@@ -21,8 +21,8 @@ const filter = R.filter
 const reduce = R.reduce
 const pick = R.pick
 const values = R.values
+const zip = R.zip
 const zipObj = R.zipObj
-const equals = R.equals
 const mergeAll = R.mergeAll
 
 const set = (k, v, hmap) => {
@@ -35,6 +35,10 @@ const set = (k, v, hmap) => {
 //                  FAKE DATA
 //
 // ==============================================
+
+// the goal is to turn a data structure that looks like input
+// into a structure that looks like expected using both
+// imperative and declarative styles
 
 let input = [{
     'id': 'notes',
@@ -63,20 +67,22 @@ let expected = {
 
 // ==============================================
 //
-//                   TESTS
+//                   IMPERATIVE
 //
 // ==============================================
 
 test.skip('Imperative swapper', t => {
   // write a function called swapper that takes and return a record
+  // with the keys swapped out
 
   t.deepEqual(swapper({foo: 'bar'}) , {baz: 'bar'})
 })
 
 test.skip('Imperative keyer', t => {
-  // write a function called keyer that takes and return a record: {record}
+  // write a function called keyer that takes a record and returns
+  // a new record with a key set to the value of the whole record
 
-  t.deepEqual(keyer({id: '42', foo: 'bar'}) , {'42':{baz: 'bar'}})
+  t.deepEqual(keyer({id: '42', foo: 'bar'}) , {'42':{id: '42', baz: 'bar'}})
 })
 
 test.skip('Imperative 1', t => {
@@ -100,7 +106,16 @@ test.skip('Imperative 2', t => {
 //
 // ==============================================
 
-test.skip('Declarative map', t => {
+test.skip('curry', t => {
+  // create a function called add that takes one argument and
+  // returns another function that takes one argument and returns
+  // the two numbers added together
+
+  let add2 = add(2)
+  t.deepEqual(add2(2), 4)
+})
+
+test.skip('map', t => {
   // create a function called mapper that multiplies each element by 2
   // and returns a new list, should not modify the input list
   // use the Ramda map function supplied above
@@ -111,7 +126,7 @@ test.skip('Declarative map', t => {
   t.deepEqual(data, [1, 2, 3])
 })
 
-test.skip('Declarative filter', t => {
+test.skip('filter', t => {
   // create a function called filterer that only return elements < 2
   // and returns a new list, should not modify the input list
   // use the Ramda filter function supplied above
@@ -122,15 +137,53 @@ test.skip('Declarative filter', t => {
   t.deepEqual(data, [1, 2, 3])
 })
 
-test.skip('Declarative reduce', t => {
+test.skip('reduce', t => {
   // create a function called reducerer that sums a list of elements
-  // and returns a new list, should not modify the input list
+  // and returns a single number, should not modify the input list
   // use the Ramda reduce function supplied above
 
   let data = [1, 2, 3]
-  let data_lessthan2 = filterer(data)
-  t.deepEqual(data_lessthan2, [1])
+  let data_sum = reducerer(data)
+  t.deepEqual(data_sum, 6)
   t.deepEqual(data, [1, 2, 3])
+})
+
+test.skip('values', t => {
+  // use the values function
+
+  let data = {first:1, second: 2, third: 3}
+  let just_the_values // do something here
+  t.deepEqual(just_the_values, [1, 2, 3])
+})
+
+test.skip('pick', t => {
+  // use the pick function
+  let data = {first:1, second: 2, third: 3}
+  let picked // do something here
+  t.deepEqual(picked, {first: 1, third: 3})
+})
+
+test.skip('zip', t => {
+  // use the zip function
+  let data1 = ['first', 'second', 'third']
+  let data2 = [1, 2, 3]
+  let all_zipped_up // do something here
+  t.deepEqual(all_zipped_up, [['first', 1], ['second', 2], ['third', 3]])
+})
+
+test.skip('zipObj', t => {
+  // use the zipObj function
+  let keys = ['first', 'second', 'third']
+  let values = [1, 2, 3]
+  let k_and_v // do something here
+  t.deepEqual(k_and_v, {first:1, second: 2, third: 3})
+})
+
+test.skip('pipe', t => {
+  // use the pipe function to double a list of numbers then
+  // filter out the numbers > 5, call the function data_pipeline
+  let data = [1, 2, 3]
+  t.deepEqual( data_pipeline(data), [2, 4] )
 })
 
 test.skip('Declarative 1', t => {
