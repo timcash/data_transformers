@@ -25,7 +25,7 @@ nvm install v6.2.0
 ```
 Install the project
 ```
-git clone git@github.com:timcash/data_transformers.git
+git clone git@github.com:timcash/declarative_workshop.git
 nvm use
 npm install
 npm test
