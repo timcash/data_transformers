@@ -31,42 +31,9 @@ const log = (text) => {
 
 // ==============================================
 //
-//               OUR SAMPLE DATA
-//
-// ==============================================
-
-let input = [{
-  'id': 'notes',
-  'displayName': 'Test Feature',
-  'description': 'A really great test feature',
-  'isAvailableForOptIn': false,
-  'isEnabledForUser': true,
-  'canToggle': true
-}, {
-  'id': 'mentor',
-  'displayName': 'Test Feature',
-  'description': 'A really great test feature',
-  'isAvailableForOptIn': true,
-  'isEnabledForUser': false,
-  'canToggle': true
-}]
-
-let output = {
-  notes: {
-    feature: 'notes', enabled: true, optin: false
-  },
-  mentor: {
-    feature: 'mentor', enabled: false, optin: true
-  }
-}
-
-// ==============================================
-//
 //              DECLARATIVE STYLE
 //
 // ==============================================
-
-// Forced to break the problem down
 
 // move key value pairs from one object to the other
 // with different key names
@@ -83,17 +50,11 @@ const swapAndKey = ( from_key, to_key, key_field ) =>
   pipe(map(swapper( from_key, to_key )), map(keyer(key_field)))
 
 // supply the from and to
-const myDataTransformer = swapAndKey(
+export const declarativeTransformer = swapAndKey(
   ['id', 'isEnabledForUser', 'isAvailableForOptIn'],
   ['feature', 'enabled', 'optin'],
   'feature'
 )
-
-// only here do we actually do any work
-const t1 = mergeAll(myDataTransformer(input))
-
-if(equals(t1, output)) console.log('declarative they are equal')
-console.log(t1)
 
 // ==============================================
 //
@@ -101,7 +62,7 @@ console.log(t1)
 //
 // ==============================================
 
-function imperativeTranformer1 (input) {
+export function imperativeTranformer1 (input) {
 
   let swapped = []
   for(let i = 0; i < input.length; i++) {
@@ -123,20 +84,13 @@ function imperativeTranformer1 (input) {
   return keyed
 }
 
-
-// only here do we actually do any work
-const t2 = imperativeTranformer1(input)
-
-if(equals(t2, output)) console.log('imperative they are equal')
-console.log(t2)
-
 // ==============================================
 //
 //              IMPERATIVE STYLE 2
 //
 // ==============================================
 
-function imperativeTranformer2 (input, from, to, key) {
+export function imperativeTranformer2 (input, from, to, key) {
   let keyed = {}
   for(let i = 0; i < input.length; i++) {
     let n1 = input[i]
@@ -155,6 +109,3 @@ const t3 = imperativeTranformer2(input,
   ['feature', 'enabled', 'optin'],
   'feature'
 )
-
-if(equals(t3, output)) console.log('imperative they are equal 2')
-console.log(t3)
