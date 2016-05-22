@@ -26,6 +26,7 @@ nvm install v6.2.0
 Install the project
 ```
 git clone git@github.com:timcash/declarative_workshop.git
+cd declarative_workshop
 nvm use
 npm install
 npm test
