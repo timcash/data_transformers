@@ -45,7 +45,7 @@ function imperativeTranformer1 (input) {
 //
 // ==============================================
 
-function imperativeTranformer2 (input, from, to, key) {
+function imperativeTranformer2 (input, from_keys, to_keys, index_key) {
 
 }
 
@@ -57,14 +57,14 @@ function imperativeTranformer2 (input, from, to, key) {
 
 // move key value pairs from one object to the other
 // {isFeatureEnabled: false, color: red} => {enabled: false, colour: red}
-const swapper = ( from_key, to_key ) => {}
+const swapper = ( from_keys, to_keys ) => {}
 
 // "key" a record
 // {name:tim, age:35} => {tim:{name:tim, age:35}
-const keyer = ( key_field ) => {}
+const keyer = ( index_key ) => {}
 
 // combine swapper and keyer together then merge them
-const declarativeTransformer = ( from_key, to_key, key_field ) => {}
+const declarativeTransformer = ( from_keys, to_keys, index_key ) => {}
 
 module.exports = {
   imperativeTranformer1,

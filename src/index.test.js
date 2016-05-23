@@ -111,6 +111,7 @@ test.skip('curry', t => {
   // returns another function that takes one argument and returns
   // the two numbers added together
 
+
   let add2 = add(2)
   t.deepEqual(add2(2), 4)
 })
@@ -120,9 +121,11 @@ test.skip('map', t => {
   // and returns a new list, should not modify the input list
   // use the Ramda map function supplied above
 
-  let data = [1, 2, 3]
-  let data_x2 = mapper(data)
-  t.deepEqual(data_x2, [2, 4, 6])
+
+  t.deepEqual(
+    mapper( [1, 2, 3] ),
+    [2, 4, 6]
+  )
   t.deepEqual(data, [1, 2, 3])
 })
 
@@ -131,9 +134,11 @@ test.skip('filter', t => {
   // and returns a new list, should not modify the input list
   // use the Ramda filter function supplied above
 
-  let data = [1, 2, 3]
-  let data_lessthan2 = filterer(data)
-  t.deepEqual(data_lessthan2, [1])
+
+  t.deepEqual(
+    filterer( [1, 2, 3] ),
+    [1]
+  )
   t.deepEqual(data, [1, 2, 3])
 })
 
@@ -142,48 +147,73 @@ test.skip('reduce', t => {
   // and returns a single number, should not modify the input list
   // use the Ramda reduce function supplied above
 
-  let data = [1, 2, 3]
-  let data_sum = reducerer(data)
-  t.deepEqual(data_sum, 6)
+
+  t.deepEqual(
+    reducerer( [1, 2, 3] ),
+    6
+  )
   t.deepEqual(data, [1, 2, 3])
 })
 
 test.skip('values', t => {
-  // use the values function
+  // create a function called justvalues and use the values function
 
-  let data = {first:1, second: 2, third: 3}
-  let just_the_values // do something here
-  t.deepEqual(just_the_values, [1, 2, 3])
+
+  t.deepEqual(
+    justvalues( {first:1, second: 2, third: 3} ),
+    [1, 2, 3]
+  )
 })
 
 test.skip('pick', t => {
-  // use the pick function
-  let data = {first:1, second: 2, third: 3}
-  let picked // do something here
-  t.deepEqual(picked, {first: 1, third: 3})
+  // create a function called picker use the pick function
+
+
+  t.deepEqual(
+    picker( {first:1, second: 2, third: 3} ),
+    {first: 1, third: 3}
+  )
+})
+
+test.skip('pluck', t => {
+  // create a function called picker use the pick function
+
+
+  t.deepEqual(
+    picker( {first:1, second: 2, third: 3} ),
+    {first: 1, third: 3}
+  )
 })
 
 test.skip('zip', t => {
-  // use the zip function
-  let data1 = ['first', 'second', 'third']
-  let data2 = [1, 2, 3]
-  let all_zipped_up // do something here
-  t.deepEqual(all_zipped_up, [['first', 1], ['second', 2], ['third', 3]])
+  // create a function called zipper1 and use the zip function
+
+
+  t.deepEqual(
+    zipper1( ['first', 'second', 'third'], [1, 2, 3]),
+    [['first', 1], ['second', 2], ['third', 3]]
+  )
 })
 
 test.skip('zipObj', t => {
-  // use the zipObj function
-  let keys = ['first', 'second', 'third']
-  let values = [1, 2, 3]
-  let k_and_v // do something here
-  t.deepEqual(k_and_v, {first:1, second: 2, third: 3})
+  // create a function called zipper2 and use the zipObj function
+
+
+  t.deepEqual(
+    zipper2( ['first', 'second', 'third'], [1, 2, 3] ),
+    {first:1, second: 2, third: 3}
+  )
 })
 
 test.skip('pipe', t => {
   // use the pipe function to double a list of numbers then
   // filter out the numbers > 5, call the function data_pipeline
-  let data = [1, 2, 3]
-  t.deepEqual( data_pipeline(data), [2, 4] )
+
+
+  t.deepEqual(
+    data_pipeline([1, 2, 3]),
+    [2, 4]
+  )
 })
 
 test.skip('Declarative 1', t => {
