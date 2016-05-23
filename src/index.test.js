@@ -176,12 +176,12 @@ test.skip('pick', t => {
 })
 
 test.skip('pluck', t => {
-  // create a function called picker use the pick function
+  // create a function called plucker use the pluck function
 
 
   t.deepEqual(
-    picker( {first:1, second: 2, third: 3} ),
-    {first: 1, third: 3}
+    plucker( [{f1: 1, f2: 3}, {f1: 1, f2: 2}, {f1: 1, f2: 4}] ),
+    [3, 2, 4]
   )
 })
 
