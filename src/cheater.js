@@ -36,8 +36,8 @@ const log = (text) => {
 
 // move key value pairs from one object to the other
 // with different key names
-const swapper = ( from_key, to_key ) =>
-  pipe(pick(from_key), values, zipObj(to_key))
+const swapper = ( from_keys, to_keys ) =>
+  pipe(pick(from_keys), values, zipObj(to_keys))
 
 // convert a record like {name:tim, age:35}
 // to a record like {tim:{name:tim, age:35}
